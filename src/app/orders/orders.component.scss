@@ -1,0 +1,25 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  z-index: 1;
+  // align-items: flex-start;
+  gap: 2rem;
+
+}
+
+mat-sidenav-container {
+  flex-grow: 2  ;
+}
+
+
+// :host {
+//   display: block;
+//   margin: 3rem auto 0;
+//   width: 90%;
+// }
+
+table {
+  width: 100%;
+  margin-top: 1rem;
+}

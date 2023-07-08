@@ -1,0 +1,63 @@
+@import "../../theme.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  z-index: 1;
+  // align-items: flex-start;
+  gap: 2rem;
+
+}
+
+mat-sidenav-container {
+  flex-grow: 2  ;
+}
+
+
+
+// :host {
+//   display: block;
+//   width: max-content;
+//   margin: 3rem auto 0;
+// }
+
+// ng-container{
+//   width: 20px;
+//   height: 20px;
+// }
+
+mat-card {
+  mat-card-title {
+    h1 {
+      letter-spacing: 2px;
+      font-weight: bold;
+      color: $light-accent-400;
+    }
+  }
+  mat-card-content {
+
+    table {
+
+
+      // width: 80px;
+      // height: 50px;
+      width: 100%;
+
+      .mat-mdc-row {
+        &:hover {
+          background-color: rgba($color: #ffffff, $alpha: 0.1);
+        }
+      }
+
+      .mat-column-name {
+        border-right: 1px solid $light-accent-400;
+      }
+
+      .mat-mdc-cell {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}

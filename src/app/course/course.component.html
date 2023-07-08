@@ -1,0 +1,102 @@
+
+
+
+
+<page-header (menuClicked)="sideNav.toggle()"></page-header>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" #sideNav opened class="mat-elevation-z6">
+    <side-nav></side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <!-- <h1>Danh sách chứng chỉ</h1> -->
+
+
+    <mat-form-field appearance="outline" color="primary">
+      <mat-label>Tìm chứng chỉ</mat-label>
+      <input matInput (input)="search(searchField.value)" #searchField>
+      <button mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+
+
+
+    <mat-card>
+      <mat-card-content>
+
+          <div>
+              Hiển thị danh sách {{getDiplomaCount()}} chứng chỉ
+          </div>
+          <div *ngIf="isBlocked()">
+              Tài khoản đã bị chặn, không được phép đăng kí
+          </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-accordion multi="true">
+      <mat-expansion-panel expanded  *ngFor="let list of diplomasToDisplay">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{list.category | titlecase}}</mat-panel-title>
+            <mat-panel-description class="a">{{list.subCategory | titlecase}}</mat-panel-description>
+        </mat-expansion-panel-header>
+
+          <table mat-table [dataSource]="list.diplomas">
+
+
+              <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef> Tên chứng chỉ </th>
+                  <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="position">
+                  <th mat-header-cell *matHeaderCellDef> Vị trí làm việc </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+              </ng-container>
+
+
+              <!-- <ng-container matColumnDef="point">
+                  <th mat-header-cell *matHeaderCellDef> Điểm </th>
+                  <td mat-cell *matCellDef="let element"> {{element.point}} </td>
+              </ng-container> -->
+
+
+              <ng-container matColumnDef="available">
+                  <th mat-header-cell *matHeaderCellDef> Tình trạng </th>
+                  <td mat-cell *matCellDef="let element">
+                      {{element.available ? "Được đăng kí" : "Hết đăng kí"}}
+                  </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="order">
+                  <th mat-header-cell *matHeaderCellDef> Đăng kí </th>
+                  <td mat-cell *matCellDef="let element">
+                      <button mat-raised-button color="primary"
+                      [disabled]="!element.available || isBlocked()"
+                      (click)="orderDiploma(element)">
+                          Đăng kí
+                      </button>
+                  </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<page-footer></page-footer>

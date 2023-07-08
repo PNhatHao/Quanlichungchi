@@ -1,0 +1,8 @@
+<mat-list role="list">
+  <ng-container *ngFor="let option of sideNavContent">
+    <mat-list-item role="listitem"
+                   routerLink="/{{option.link}}" routerLinkActive="active" *ngIf="checkPermission(option)">
+        {{option.title | titlecase}}
+    </mat-list-item>
+  </ng-container>
+</mat-list>

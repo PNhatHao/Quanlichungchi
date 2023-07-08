@@ -1,0 +1,79 @@
+
+<h1>Đăng kí</h1>
+
+<h2>{{responseMsg}}</h2>
+
+
+<mat-grid-list cols="2" rowHeight="100px" gutterSize="10px" [formGroup]="registerForm">
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Tên</mat-label>
+            <!-- <span class="input-group-text" >
+              <i class="fa-solid fa-pencil"
+              [class.green-icon]="this.registerForm.get('id')?.valid"
+               [class.red-icon]="this.registerForm.get('id')?.invalid && this.registerForm.get('id')?.touched"
+
+              ></i>
+            </span> -->
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="this.FirstName.invalid">{{getFirstNameErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Họ</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-error *ngIf="this.LastName.invalid">{{getLastNameErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="this.Email.invalid">{{getEmailErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Mật khẩu</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="this.Password.invalid">{{getPasswordErrors()}}</mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-form-field appearance="fill" color="primary">
+            <mat-label>Nhập lại mật khẩu</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="rpassword">
+            <button mat-icon-button matSuffix (click)="hide = !hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="this.RPassword.hasError('rpassword')">
+              Must be same as Password.
+          </mat-error>
+        </mat-form-field>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2">
+        <button  mat-flat-button color="primary" class="create-account-btn" (click)="register()"
+        [disabled]="registerForm.invalid" routerLink="/diplomas/course">
+            Tạo tài khoản
+        </button>
+    </mat-grid-tile>
+
+</mat-grid-list>
+
+<div class="login-link">
+    <span>Đã có tài khoản</span>
+    <button mat-stroked-button color="primary" routerLink="/login">Đăng nhập</button>
+</div>
+
+
+

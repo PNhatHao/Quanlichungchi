@@ -1,0 +1,44 @@
+
+
+
+<page-header (menuClicked)="sideNav.toggle()"></page-header>
+
+<mat-sidenav-container>
+  <mat-sidenav mode="side" #sideNav opened class="mat-elevation-z6">
+    <side-nav></side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+    <mat-card>
+      <mat-card-header>
+          <mat-card-title>Mở chứng chỉ</mat-card-title>
+      </mat-card-header>
+      <mat-card-content [formGroup]="diplomaForm">
+          <h1> {{status}} </h1>
+
+          <mat-form-field appearance="outline" color="primary">
+              <mat-label>Mã chứng chỉ</mat-label>
+              <input matInput formControlName="diplomaId">
+              <button mat-icon-button matSuffix>
+                  <mat-icon>menu_id</mat-icon>
+              </button>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="primary">
+              <mat-label>Mã nhân viên</mat-label>
+              <input matInput formControlName="userId">
+              <button mat-icon-button matSuffix>
+                  <mat-icon>person</mat-icon>
+              </button>
+          </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-flat-button (click)="finishDiploma()">Hoàn thành</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<page-footer></page-footer>
